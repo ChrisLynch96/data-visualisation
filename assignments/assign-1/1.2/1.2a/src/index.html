@@ -30,20 +30,19 @@
 			// Add a title:
 			d3.select('body').append('h2')
 				.attr('class', 'title')
-				.html( 'Diagram <span class="small">of the</span> Causes <span class="small">of</span> Mortality <span class="small">in the</span> Army <span class="small">of the</span> East');
+				.html( 'Diagram <span class="small">of the</span> Causes <span class="small">of</span> Mortality <br/> <span class="small">in the</span> Army <span class="small">in the</span> East');
 
 			// Add sub-titles:
 			d3.select('body').append('h3')
 				.attr('class', 'subtitle left')
-				.html('April 1855 - March 1856');
+				.html('April 1855 <span class="small">to</span> March 1856');
 
 			d3.select('body').append('h3')
 				.attr('class', 'subtitle right')
-				.html('April 1854 - March 1855');
+				.html('April 1854 <span class="small">to</span> March 1855');
 
 			// Load the JSON data:
 			d3.json( 'data.json', function( data ) {
-				// Data from: http://ocp.hul.harvard.edu/dl/contagion/010164675
 
 				// Format the date and rework the data:
 				var scalar;
@@ -52,7 +51,6 @@
 					d.label = labels[d.date.getMonth()];
 					
 					// Calculate the average annual mortality, as done by Nightingale:
-					// http://understandinguncertainty.org/node/214 
 					scalar = 1000*12 / d.army_size;
 					d.disease = d.disease * scalar;
 					d.wounds  = d.wounds  * scalar;
@@ -118,7 +116,7 @@
 				Chart.legend( causes );
 
 				// Create a slider:
-				Chart.slider( 0, data.length, 1 ); // minVal, maxVal, step
+				//Chart.slider( 0, data.length, 1 ); // minVal, maxVal, step
 				
 			});	
 

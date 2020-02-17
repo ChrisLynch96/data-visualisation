@@ -66,9 +66,17 @@ h1 {
 		float: left;
 	}
 
+		.subtitle.left .small {
+			font-size: 8px;
+		}
+
 	.subtitle.right {
 		float: right;
 	}
+
+		.subtitle.right .small {
+			font-size: 8px;
+		}
 
 
 .caption {
