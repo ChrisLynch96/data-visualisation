@@ -13,9 +13,6 @@
 *
 */
 
-
-
-
 var Chart = {};
 
 Chart.rose = function() {
@@ -144,14 +141,14 @@ Chart.rose = function() {
 			  	return ids.map( function(i) {
 			  		return {
 			  			'legend': legend[i],
-			  			'radius': d.radius[i],
+							'radius': d.radius[i],
 			  			'angle': d.angle
 			  		};
 			  	});
 		  	})
-		  .enter().append('svg:path')
+			.enter().append('svg:path')
 		  	.attr('class', function(d) { return 'wedge ' + d.legend; })
-		  	.attr('d', arc );
+				.attr('d', arc );
 
 		// Append title tooltips:
 		wedges.append('svg:title')
@@ -355,12 +352,10 @@ Chart.legend = function( entries ) {
 				.attr('opacity', 1 );
 
 	}; // end FUNCTION mouseout()
-
 }; // end FUNCTION legend()
 
 
 Chart.slider = function( minVal, maxVal, step ) {
-
 	d3.select('body').append('input')
 		.attr('class', 'slider')
 		.attr('type', 'range')
@@ -384,10 +379,7 @@ Chart.slider = function( minVal, maxVal, step ) {
 	  	.transition()
 	  		.duration( 500 )
 	  		.attr( 'transform', 'scale(0,0)' );
-
 	});
-
-
 }; // end FUNCTION slider()
 
 

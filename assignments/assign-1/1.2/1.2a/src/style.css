@@ -112,15 +112,15 @@ h1 {
 }
 
 .disease {
-	fill: rgb(198, 226, 255);
+	fill: rgb(105, 89, 88);
 }
 
 .other {
-	fill: rgb(50,50,50);
+	fill: rgb(232, 229, 197);
 }
 
 .wounds {
-	fill: rgb(252,112,147);
+	fill: rgb(235,64,52);
 }
 
 .legend {
