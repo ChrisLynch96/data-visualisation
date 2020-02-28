@@ -1,0 +1,242 @@
+[
+  {
+  	"date": "4/1854",
+  	"army_size": 8571, 
+  	"disease": 1, 
+  	"wounds": 0, 
+		"other": 5,
+		"disease_rate": 1.4,
+		"wounds_rate": 0,
+		"other_rate": 7 
+  },
+  {
+  	"date": "5/1854", 
+  	"army_size": 23333, 
+  	"disease": 12, 
+  	"wounds": 0, 
+		"other": 9,
+		"disease_rate": 6.2,
+		"wounds_rate": 0,
+		"other_rate": 4.6 
+  },
+  {
+  	"date": "6/1854", 
+  	"army_size": 28333, 
+  	"disease": 11, 
+  	"wounds": 0, 
+		"other": 6,
+		"disease_rate": 4.7,
+		"wounds_rate": 0,
+		"other_rate": 2.5 
+  },
+  {
+  	"date": "7/1854", 
+  	"army_size": 28722, 
+  	"disease": 359, 
+  	"wounds": 0, 
+		"other": 23,
+		"disease_rate": 150,
+		"wounds_rate": 0,
+		"other_rate": 9.6 
+  },
+  {
+  	"date": "8/1854", 
+  	"army_size": 30246, 
+  	"disease": 828, 
+  	"wounds": 1, 
+		"other": 30,
+		"disease_rate": 328.5,
+		"wounds_rate": 0.4,
+		"other_rate": 11.9
+  },
+  {
+  	"date": "9/1854", 
+  	"army_size": 30290, 
+  	"disease": 788, 
+  	"wounds": 81, 
+		"other": 70,
+		"disease_rate": 312.2,
+		"wounds_rate": 32.1,
+		"other_rate": 27.7
+  },
+  {
+  	"date": "10/1854", 
+  	"army_size": 30643, 
+  	"disease": 503, 
+  	"wounds": 132, 
+		"other": 128,
+		"disease_rate": 197,
+		"wounds_rate": 51.7,
+		"other_rate": 50.1
+  },
+  {
+  	"date": "11/1854", 
+  	"army_size": 29736, 
+  	"disease": 844, 
+  	"wounds": 287, 
+		"other": 106,
+		"disease_rate": 340.6,
+		"wounds_rate": 115.8,
+		"other_rate": 42.8
+  },
+  {
+  	"date": "12/1854", 
+  	"army_size": 32779, 
+  	"disease": 1725, 
+  	"wounds": 114, 
+		"other": 131,
+		"disease_rate": 631.5,
+		"wounds_rate": 41.7,
+		"other_rate": 48
+  },
+  {
+  	"date": "1/1855", 
+  	"army_size": 32393, 
+  	"disease": 2761, 
+  	"wounds": 83, 
+		"other": 324,
+		"disease_rate": 1022.8,
+		"wounds_rate": 30.7,
+		"other_rate": 120 
+  },
+  {
+  	"date": "2/1855", 
+  	"army_size": 30919, 
+  	"disease": 2120, 
+  	"wounds": 42, 
+		"other": 361,
+		"disease_rate": 822.8,
+		"wounds_rate": 16.3,
+		"other_rate": 140.1
+  },
+  {
+  	"date": "3/1855", 
+  	"army_size": 30107, 
+  	"disease": 1205, 
+  	"wounds": 32, 
+		"other": 172,
+		"disease_rate": 480.3,
+		"wounds_rate": 12.8,
+		"other_rate": 68.6
+  },
+  {
+  	"date": "4/1855", 
+  	"army_size": 32252, 
+  	"disease": 477, 
+  	"wounds": 48, 
+		"other": 57,
+		"disease_rate": 177.5,
+		"wounds_rate": 17.9,
+		"other_rate": 21.2
+  },
+  {
+  	"date": "5/1855", 
+  	"army_size": 35473, 
+  	"disease": 508, 
+  	"wounds": 49, 
+		"other": 37,
+		"disease_rate": 171.8,
+		"wounds_rate": 16.6,
+		"other_rate": 12.5 
+  },
+  {
+  	"date": "6/1855", 
+  	"army_size": 38863, 
+  	"disease": 802, 
+  	"wounds": 209, 
+		"other": 31,
+		"disease_rate": 247.6,
+		"wounds_rate": 64.5,
+		"other_rate": 9.6 
+  },
+  {
+  	"date": "7/1855", 
+  	"army_size": 42647, 
+  	"disease": 382, 
+  	"wounds": 134, 
+		"other": 33,
+		"disease_rate": 107.5,
+		"wounds_rate": 37.7,
+		"other_rate": 9.3 
+  },
+  {
+  	"date": "8/1855", 
+  	"army_size": 44614, 
+  	"disease": 483, 
+  	"wounds": 164, 
+		"other": 25,
+		"disease_rate": 129.9,
+		"wounds_rate": 44.1,
+		"other_rate": 6.7
+  },
+  {
+  	"date": "9/1855", 
+  	"army_size": 47751, 
+  	"disease": 189, 
+  	"wounds": 276, 
+		"other": 20,
+		"disease_rate": 47.5,
+		"wounds_rate": 69.4,
+		"other_rate": 5
+  },
+  {
+  	"date": "10/1855", 
+  	"army_size": 46852, 
+  	"disease": 128, 
+  	"wounds": 53, 
+		"other": 18,
+		"disease_rate": 32.8,
+		"wounds_rate": 13.6,
+		"other_rate": 4.6
+  },
+  {
+  	"date": "11/1855", 
+  	"army_size": 37853, 
+  	"disease": 178, 
+  	"wounds": 33, 
+		"other": 32,
+		"disease_rate": 56.4,
+		"wounds_rate": 10.5,
+		"other_rate": 10.1
+  },
+  {
+  	"date": "12/1855", 
+  	"army_size": 43217, 
+  	"disease": 91, 
+  	"wounds": 18, 
+		"other": 28,
+		"disease_rate": 25.3,
+		"wounds_rate": 5,
+		"other_rate": 7.8
+  },
+  {
+  	"date": "1/1856", 
+  	"army_size": 44212, 
+  	"disease": 42, 
+  	"wounds": 2, 
+		"other": 48,
+		"disease_rate": 11.4,
+		"wounds_rate": 0.5,
+		"other_rate": 13 
+  },
+  {
+  	"date": "2/1856", 
+  	"army_size": 43485, 
+  	"disease": 24, 
+  	"wounds": 0, 
+		"other": 19,
+		"disease_rate": 6.6,
+		"wounds_rate": 0,
+		"other_rate": 5.2
+  },
+  {
+  	"date": "3/1856", 
+  	"army_size": 46140, 
+  	"disease": 15, 
+  	"wounds": 0, 
+		"other": 35,
+		"disease_rate": 3.9,
+		"wounds_rate": 0,
+		"other_rate": 9.1
+  }
+]
