@@ -17,7 +17,7 @@ var Chart = {};
 
 Chart.rose = function() {
 
-	var margin = {'top': 20, 'right': 20, 'bottom': 20, 'left': 20},
+	var margin = {'top': 10, 'right': 10, 'bottom': 10, 'left': 10},
 		height = 500,
 		width = 500,
 		color = 'rgb(0,0,0)',
@@ -135,8 +135,8 @@ Chart.rose = function() {
 
 		  		ids.sort( function(a,b) { 
 			  		var val2 = d.radius[b],
-			  			val1 = d.radius[a]
-			  		return  val2 - val1; 
+			  				val1 = d.radius[a]
+			  		return val2 - val1;
 			  	});
 			  	return ids.map( function(i) {
 			  		return {

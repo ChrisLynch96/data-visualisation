@@ -29,11 +29,11 @@
 				// Add sub-titles:
 				d3.select('#rose-nightingale').append('h3')
 					.attr('class', 'subtitle left')
-					.html('April 1855 - March 1856');
+					.html('April 1855 <span class="small">to</span> March 1856');
 	
 				d3.select('#rose-nightingale').append('h3')
 					.attr('class', 'subtitle right')
-					.html('April 1854 - March 1855');
+					.html('April 1854 <span class="small">to</span> March 1855');
 
 				d3.json( 'data.json', function( data ) {
 					var scalar;
@@ -95,14 +95,19 @@
 					// Append a caption:
 					d3.select('.figure2').append('figcaption')
 						.attr('class', 'caption')
-						.html('The Areas of the blue, red, &amp; black wedges are each measured from the centre as the common vertex <p> The blue wedges measured from the centre of the circle represent area for area the deaths from Preventible or Mitigable Zymotic Diseases, the red wedges measured from the center the deaths from wounds, &amp; the black wedges measured from the center the deaths from all other causes </p><p> In October 1844, &amp; April 1855, the black area coincides with the red, in January &amp; February 1856, the blue coincides with the black </p><p> The entire areas may be compared by following the blue, the red &amp; the black lines enclosing them.</p>');
-	
+						.html('The Areas of the Navy, red, &amp; cream wedges are each measured from the centre as the common vertex <p> The Navy wedges measured from the centre of the circle represent area for area the deaths from Preventible or Mitigable Zymotic Diseases, the red wedges measured from the center the deaths from wounds, &amp; the cream wedges measured from the center the deaths from all other causes </p><p> In October 1844, &amp; April 1855, the cream area coincides with the red, in January &amp; February 1856, the navy coincides with the cream </p><p> The entire areas may be compared by following the navy, the red &amp; the cream lines enclosing them.</p>');
+
+					var svg = d3.select("svg")
+					var triangle_cx = 60
+					var triangle_cy = 140
+					svg.transition()
+						.duration(100)
+						.attr('transform' , 'rotate(-180, '+triangle_cx+',' +triangle_cy +') ')
+
 					// Create a legend:
 					Chart.legend( causes );
 				});	
 			</script>
 		</div>
-
-		<div id="minard"></div>
 	</body>
 </html>
