@@ -1,0 +1,192 @@
+---
+title: "The colours of LEGO"
+output: html_document
+---
+
+```{r setup, include = FALSE, error = FALSE}
+knitr::opts_chunk$set(echo = FALSE, error=F, warning=F)
+library(tidyverse) # CSV file I/O, e.g. the read_csv function
+library(RColorBrewer)
+library(plotly) #contain hex to RGB conversion
+#date
+library(lubridate)
+#machinelearning
+library(caret)
+#text
+library(tidytext)
+library(spacyr)
+# Chord diagram
+library(circlize)
+#theme
+my_theme <- function(base_size = 12, base_family = "Helvetica"){
+    theme(axis.title.y = element_blank(),axis.title.x = element_blank(),
+    plot.title = element_text(face="bold", size=16),
+    axis.text = element_text(face="bold"),
+    plot.background = element_rect(fill = 'snow2',color='white'),
+    strip.text.y = element_text(angle=180),
+    legend.position = 'None', legend.title = element_blank())
+}
+
+```
+
+```{css}
+.grey {
+  background-color: grey;
+}
+```
+
+```{r include=FALSE}
+# Load Data
+setwd("~/workspace/github.com/ChrisLynch96/data-visualisation/assignments/assign-3")
+inventories <- read_csv("lego-datasets/inventories.csv")
+inventory_parts <- read_csv("lego-datasets/inventory_parts.csv")
+inventory_sets <- read_csv("lego-datasets/inventory_sets.csv")
+sets <- read_csv("lego-datasets/sets.csv")
+parts <- read_csv("lego-datasets/parts.csv")
+themes <- read_csv("lego-datasets/themes.csv")
+part_categories <- read_csv("lego-datasets/part_categories.csv")
+```
+
+```{r include=FALSE}
+colors <- read_csv("lego-datasets/colors.csv")
+#convert hex to rgb
+colors <- colors %>% 
+  mutate(hex = paste0("#", rgb),
+         alpha = ifelse(is_trans == 't', 0.8, 0),
+         rgb = toRGB(hex)) %>%
+  separate(rgb, into=c('prefix','r','g','b','alp'), sep = "\\(|,|\\)") %>%
+  mutate(rgb = paste(r, g, b, sep=',')
+         #hsv = rgb2hsv(rgb)
+         )
+```
+
+```{r}
+# convert rgb to hsv space for oredering 
+colors_rgb <- colors %>%
+  select(r,g,b) %>% mutate_all(as.numeric)
+colors_hsv <- t(rgb2hsv(t(colors_rgb))) %>% as.data.frame()
+colors <- colors %>% cbind(colors_hsv)
+```
+
+```{r merge}
+merge <- sets %>% 
+  left_join(inventories, by = "set_num") %>%
+  left_join(inventory_parts, by = c("id" = "inventory_id")) %>%
+  left_join(colors, by = c("color_id" = "id")) 
+```
+
+```{r}
+brick_colors = merge %>%
+  mutate(decade = year- (year%%10)) %>%
+  group_by(hex, h, decade) %>%
+  dplyr::summarize(total = n())
+  
+```
+```{r distinctcolor}
+pal <- unique(colors$hex)
+names(pal) <- unique(pal) 
+```
+
+
+```{r distinctcolor-years}
+pal <- unique(colors$hex)
+names(pal) <- unique(pal) 
+
+brick_colors_yr = merge %>%
+  group_by(hex, h, year) %>%
+  dplyr::summarize(total = n())
+
+```
+
+
+
+```{r include=FALSE}
+brick_colors_yr %>% group_by(year) %>%
+  dplyr::summarize(n_col = n_distinct(hex)) %>%
+  arrange(-n_col) %>% head()
+```
+
+```{r include=FALSE}
+top20set <- sets %>% top_n(20, num_parts)
+topsetcolor <- top20set %>% 
+  inner_join(merge, by = c("name" = "name.x"))
+d=topsetcolor%>%filter(name=='The Disney Castle') 
+ table(d$year.x)
+```
+
+```{r}
+df_themes <- themes %>% 
+  left_join(merge, by =c("id" = "theme_id"))
+```
+
+```{r}
+top20theme <- df_themes %>% 
+  group_by(name) %>%
+  summarize(n = n_distinct(name.x)) %>% 
+  arrange(desc(n)) %>% head(20)
+topcolor <- top20theme %>% 
+  inner_join(df_themes, by = c("name" = "name"))
+g = df_themes %>% filter(name=='Clikits')
+```
+
+<center>
+
+## The colour of themes
+
+Below is a chord diagram showing the top 5 lego themes by number of bricks, linked with the top colours used in the LEGO universe.
+
+``` {r echo=FALSE, class.source="grey"}
+
+top5theme <- df_themes %>% 
+  group_by(name) %>%
+  summarize(n = n_distinct(name.x)) %>% 
+  arrange(desc(n)) %>% head(5)
+
+topchordcolor <- top5theme %>% 
+  inner_join(df_themes, by = c("name" = "name")) %>%
+  group_by(name, hex) %>%
+  dplyr::summarize(n = sum(num_parts))
+
+topchordcolor <- topchordcolor[complete.cases(topchordcolor),]
+topchordcolor <- topchordcolor[c("hex", "name", "n")]
+
+grid.col =  c("#FFFFFF" = "#f7f8fa", "#F2CD37" = "#F2CD37", "#C91A09" = "#C91A09", "#A0A5A9" = "#A0A5A9", "#6C6E68" = "#6C6E68", "#582A12" = "#582A12", "#237841" = "#237841", "#05131D" = "#05131D", "#0055BF" = "#0055BF", "City" = "#DDDDDDDD", "Creator" = "#AAAAAAAA", "Friends" = "#DDDDDDDD", "Supplemental" = "#AAAAAAAA", "Technic" = "#DDDDDDDD")
+
+circos.par(start.degree = 90)
+
+chordDiagram(topchordcolor , transparency = 0.3, reduce = .01, big.gap = 20, grid.col = grid.col, annotationTrack = "grid", preAllocateTracks = list(track.height = max(strwidth(unlist(dimnames(topchordcolor))))))
+
+abline(v = 0, lty = 2, col = "#00000080")
+
+circos.track(track.index = 1, panel.fun = function(x, y) {
+    circos.text(CELL_META$xcenter, CELL_META$ylim[1], CELL_META$sector.index, 
+        facing = "clockwise", niceFacing = TRUE, adj = c(0, 0.5))
+}, bg.border = NA)
+
+
+circos.clear()
+```
+
+
+***
+
+
+## Distinct Colors of Lego brick 1950 - 2017
+
+The below chart shoes unique colours used in lego sets from the beginning to today. In 2005 there were 91 unique colours in use!
+You can start to see LEGO targeting girls around 1990. What else do you see?
+
+</center>
+
+``` {r fig.align='center'}
+brick_colors_yr %>%
+          ggplot(aes(x = year, y=1, fill = reorder(hex, h))) + 
+          geom_col(color = 'white', size=0.01) + 
+          scale_x_continuous(breaks = seq(1950,2020, by=10)) + 
+          scale_y_continuous(breaks = seq(0,120, by=20)) + 
+          scale_fill_manual(values = pal) +
+          theme_void( ) +
+          my_theme() + theme(plot.margin=unit(c(1,1,1.5,1.2),"cm"))
+```
+
+</center>
